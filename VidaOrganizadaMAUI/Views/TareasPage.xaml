@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VidaOrganizadaMAUI.Views.TareasPage"
+             Title="Tareas">
+    <VerticalStackLayout Padding="12" Spacing="12">
+        <HorizontalStackLayout Spacing="8">
+            <Entry x:Name="entryTitulo" Placeholder="Título de la tarea" HorizontalOptions="FillAndExpand"/>
+            <Button Text="Agregar" Clicked="AgregarTarea_Clicked"/>
+        </HorizontalStackLayout>
+
+        <Entry x:Name="entryDescripcion" Placeholder="Descripción (opcional)"/>
+        <CollectionView x:Name="cvTareas" SelectionMode="Single" HeightRequest="400">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="8" Margin="4" BorderColor="#ddd">
+                        <HorizontalStackLayout>
+                            <VerticalStackLayout HorizontalOptions="FillAndExpand">
+                                <Label Text="{Binding Titulo}" FontAttributes="Bold"/>
+                                <Label Text="{Binding Descripcion}" FontSize="12" />
+                                <Label Text="{Binding FechaCreacion, StringFormat='Creada: {0:yyyy-MM-dd HH:mm}'}" FontSize="10"/>
+                            </VerticalStackLayout>
+                            <VerticalStackLayout HorizontalOptions="End">
+                                <Button Text="Eliminar" Clicked="Eliminar_Clicked" CommandParameter="{Binding Id}" />
+                            </VerticalStackLayout>
+                        </HorizontalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

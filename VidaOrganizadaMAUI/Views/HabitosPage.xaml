@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VidaOrganizadaMAUI.Views.HabitosPage"
+             Title="Hábitos">
+    <VerticalStackLayout Padding="12" Spacing="10">
+        <Entry x:Name="entryHabitoNombre" Placeholder="Nombre del hábito"/>
+        <Entry x:Name="entryHabitoFrecuencia" Placeholder="Frecuencia (Diario, Semanal)"/>
+        <Button Text="Agregar hábito" Clicked="AgregarHabito_Clicked" />
+        <Label Text="Hábitos" FontAttributes="Bold" />
+        <CollectionView x:Name="cvHabitos" HeightRequest="400">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="8" Margin="4">
+                        <HorizontalStackLayout>
+                            <VerticalStackLayout HorizontalOptions="FillAndExpand">
+                                <Label Text="{Binding Nombre}" FontAttributes="Bold"/>
+                                <Label Text="{Binding Frecuencia}" FontSize="12"/>
+                            </VerticalStackLayout>
+                            <Button Text="Eliminar" Clicked="EliminarHabito_Clicked" CommandParameter="{Binding Id}" />
+                        </HorizontalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

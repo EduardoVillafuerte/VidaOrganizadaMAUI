@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VidaOrganizadaMAUI.Views.NotasPage"
+             Title="Notas">
+    <VerticalStackLayout Padding="12" Spacing="10">
+        <Entry x:Name="entryNotaTitulo" Placeholder="Título de la nota"/>
+        <Editor x:Name="editorContenido" HeightRequest="120" Placeholder="Escribe tu nota..."/>
+        <Button Text="Agregar nota" Clicked="AgregarNota_Clicked" />
+        <Label Text="Notas" FontAttributes="Bold"/>
+        <CollectionView x:Name="cvNotas" HeightRequest="400">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Padding="8" Margin="4">
+                        <VerticalStackLayout>
+                            <Label Text="{Binding Titulo}" FontAttributes="Bold"/>
+                            <Label Text="{Binding Contenido}" LineBreakMode="TailTruncation" MaxLines="3"/>
+                            <HorizontalStackLayout>
+                                <Label Text="{Binding FechaCreacion, StringFormat='Creada: {0:yyyy-MM-dd}'}" FontSize="10" HorizontalOptions="Start"/>
+                                <Button Text="Eliminar" Clicked="EliminarNota_Clicked" CommandParameter="{Binding Id}" HorizontalOptions="EndAndExpand"/>
+                            </HorizontalStackLayout>
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

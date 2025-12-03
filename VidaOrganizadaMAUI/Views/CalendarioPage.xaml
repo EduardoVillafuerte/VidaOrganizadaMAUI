@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VidaOrganizadaMAUI.Views.CalendarioPage"
+             Title="Calendario">
+    <VerticalStackLayout Padding="12" Spacing="10">
+        <Entry x:Name="entryEventoTitulo" Placeholder="Título del evento" />
+        <Entry x:Name="entryEventoDescripcion" Placeholder="Descripción (opcional)" />
+        <DatePicker x:Name="datePickerEvento" />
+
+        <Button Text="Agregar evento" Clicked="AgregarEvento_Clicked" />
+
+        <Label Text="Eventos" FontAttributes="Bold" />
+
+        <CollectionView x:Name="cvEventos" HeightRequest="400">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Stroke="#ddd"
+                StrokeThickness="1"
+                Padding="8"
+                Margin="4"
+                Background="White"
+                StrokeShape="RoundRectangle 8">
+
+                        <HorizontalStackLayout>
+                            <VerticalStackLayout HorizontalOptions="FillAndExpand">
+                                <Label Text="{Binding Titulo}" FontAttributes="Bold" />
+                                <Label Text="{Binding FechaEvento, StringFormat='Fecha: {0:yyyy-MM-dd}'}" FontSize="12" />
+                                <Label Text="{Binding Descripcion}" FontSize="12" />
+                            </VerticalStackLayout>
+
+                            <Button Text="Eliminar"
+                        Clicked="EliminarEvento_Clicked"
+                        CommandParameter="{Binding Id}" />
+                        </HorizontalStackLayout>
+
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+    </VerticalStackLayout>
+
+</ContentPage>
