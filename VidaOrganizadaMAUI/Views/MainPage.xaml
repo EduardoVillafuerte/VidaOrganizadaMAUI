@@ -5,13 +5,145 @@
              Title="Vida Organizada">
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="18">
+            <Image Source="logotpovidaorganizada.png" WidthRequest="200" HeightRequest="200" />
             <Label x:Name="lblSaludo" FontSize="20" />
             <Label Text="Módulos" FontAttributes="Bold" />
-            <Button Text="Tareas" Clicked="OpenTareas" />
-            <Button Text="Calendario" Clicked="OpenCalendario" />
-            <Button Text="Hábitos" Clicked="OpenHabitos" />
-            <Button Text="Notas" Clicked="OpenNotas" />
-            <Button Text="Cerrar sesión" Clicked="CerrarSesion" BackgroundColor="#f44336" TextColor="White" />
+            
+            <Button BackgroundColor="#8A1313" Text="Tareas" Clicked="OpenTareas" >
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+
+                            <!-- Estado normal -->
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#8A1313"/>
+                                    <Setter Property="Scale" Value="1"/>
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <!-- Al presionar -->
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#963B3B"/>
+                                    <Setter Property="Scale" Value="0.95"/>
+                                </VisualState.Setters>
+                            </VisualState>
+
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+            </Button>
+
+
+            <Button BackgroundColor="#8A1313" Text="Calendario" Clicked="OpenCalendario" >
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+
+                            <!-- Estado normal -->
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#8A1313"/>
+                                    <Setter Property="Scale" Value="1"/>
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <!-- Al presionar -->
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#963B3B"/>
+                                    <Setter Property="Scale" Value="0.95"/>
+                                </VisualState.Setters>
+                            </VisualState>
+
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+            </Button>
+
+
+            <Button BackgroundColor="#8A1313" Text="Hábitos" Clicked="OpenHabitos">
+                <VisualStateManager.VisualStateGroups>
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+
+                            <!-- Estado normal -->
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#8A1313"/>
+                                    <Setter Property="Scale" Value="1"/>
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <!-- Al presionar -->
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#963B3B"/>
+                                    <Setter Property="Scale" Value="0.95"/>
+                                </VisualState.Setters>
+                            </VisualState>
+
+                        </VisualStateGroup>
+                </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+            </Button>
+
+            
+            <Button BackgroundColor="#8A1313" Text="Notas" Clicked="OpenNotas">
+                <VisualStateManager.VisualStateGroups>
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+
+                            <!-- Estado normal -->
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#8A1313"/>
+                                    <Setter Property="Scale" Value="1"/>
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <!-- Al presionar -->
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#963B3B"/>
+                                    <Setter Property="Scale" Value="0.95"/>
+                                </VisualState.Setters>
+                            </VisualState>
+
+                        </VisualStateGroup>
+                </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+            </Button>
+
+            
+            <Button Text="Cerrar sesión" Clicked="CerrarSesion" BackgroundColor="#f44336" TextColor="White" >
+                <VisualStateManager.VisualStateGroups>
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+
+                        <!-- Estado normal -->
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#2E2E2E"/>
+                                <Setter Property="Scale" Value="1"/>
+                            </VisualState.Setters>
+                        </VisualState>
+
+                        <!-- Al presionar -->
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="#858585"/>
+                                <Setter Property="TextColor" Value="White"/>
+                                <Setter Property="Scale" Value="0.95"/>
+                            </VisualState.Setters>
+                        </VisualState>
+
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+            </Button>
+            
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

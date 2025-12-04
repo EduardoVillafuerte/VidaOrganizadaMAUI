@@ -5,10 +5,34 @@
              Title="Vida Organizada - Login">
     <ScrollView>
         <VerticalStackLayout Spacing="20" VerticalOptions="Center">
-            <Label Text="Vida Organizada" FontSize="28" HorizontalOptions="Center" />
+            <Image Source="logotpovidaorganizada.png" WidthRequest="200" HeightRequest="200" />
+            <!--<Label Text="Vida Organizada" FontSize="28" HorizontalOptions="Center" />-->
             <Entry x:Name="entryUsuario" Placeholder="Usuario" />
             <Entry x:Name="entryContrasena" Placeholder="Contraseña" IsPassword="True" />
-            <Button Text="Iniciar sesión" Clicked="OnLoginClicked" />
+            <Button Text="Iniciar sesión" Clicked="OnLoginClicked" >
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+
+                            <!-- Estado normal -->
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#8A1313"/>
+                                    <Setter Property="Scale" Value="1"/>
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <!-- Al presionar -->
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#963B3B"/>
+                                    <Setter Property="Scale" Value="0.95"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+            </Button>
             <Label x:Name="lblMensaje" TextColor="Red" IsVisible="False" />
         </VerticalStackLayout>
     </ScrollView>
