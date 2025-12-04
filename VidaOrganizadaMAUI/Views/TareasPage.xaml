@@ -5,25 +5,103 @@
              Title="Tareas">
     <VerticalStackLayout Padding="12" Spacing="12">
         <HorizontalStackLayout Spacing="8">
-            <Entry x:Name="entryTitulo" Placeholder="Título de la tarea" HorizontalOptions="FillAndExpand"/>
-            <Button Text="Agregar" Clicked="AgregarTarea_Clicked"/>
+            <Entry x:Name="entryTitulo"
+                   Placeholder="Título de la tarea"
+                   HorizontalOptions="FillAndExpand"/>
+
+            <!-- BOTÓN AGREGAR -->
+            <Button Text="Agregar"
+                    Clicked="AgregarTarea_Clicked"
+                    BackgroundColor="#8A1313"
+                    TextColor="White"
+                    CornerRadius="12">
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#8A1313"/>
+                                    <Setter Property="Scale" Value="1"/>
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#963B3B"/>
+                                    <Setter Property="Scale" Value="0.95"/>
+                                </VisualState.Setters>
+                            </VisualState>
+
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+            </Button>
         </HorizontalStackLayout>
 
-        <Entry x:Name="entryDescripcion" Placeholder="Descripción (opcional)"/>
+        <Entry x:Name="entryDescripcion"
+               Placeholder="Descripción (opcional)"/>
+
         <CollectionView x:Name="cvTareas" SelectionMode="Single" HeightRequest="400">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame Padding="8" Margin="4" BorderColor="#ddd">
-                        <HorizontalStackLayout>
-                            <VerticalStackLayout HorizontalOptions="FillAndExpand">
-                                <Label Text="{Binding Titulo}" FontAttributes="Bold"/>
-                                <Label Text="{Binding Descripcion}" FontSize="12" />
-                                <Label Text="{Binding FechaCreacion, StringFormat='Creada: {0:yyyy-MM-dd HH:mm}'}" FontSize="10"/>
+
+                    <!-- TARJETA DE TAREA -->
+                    <Frame Padding="0"
+                           Margin="4"
+                           BorderColor="#ddd"
+                           CornerRadius="10">
+                        <Grid ColumnDefinitions="6,*">
+                            <BoxView Color="#8A1313"
+                                     Grid.RowSpan="3"/>
+                            <VerticalStackLayout Padding="10" Grid.Column="1">
+                                <Label Text="{Binding Titulo}"
+                                       FontAttributes="Bold"
+                                       FontSize="16"/>
+                                <Label Text="{Binding Descripcion}"
+                                       FontSize="13"
+                                       TextColor="#444"/>
+                                <Label Text="{Binding FechaCreacion, StringFormat='Creada: {0:yyyy-MM-dd HH:mm}'}"
+                                       FontSize="10"
+                                       TextColor="#777"
+                                       Margin="0,2,0,0"/>
+
+                                <!-- BOTÓN ELIMINAR -->
+                                <HorizontalStackLayout HorizontalOptions="End"
+                                                       Margin="0,8,0,0">
+                                    <Button Text="Eliminar"
+                                            Clicked="Eliminar_Clicked"
+                                            CommandParameter="{Binding Id}"
+                                            BackgroundColor="#8A1313"
+                                            TextColor="White"
+                                            CornerRadius="12"
+                                            Padding="12,4">
+
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroupList>
+                                                <VisualStateGroup x:Name="CommonStates">
+
+                                                    <VisualState x:Name="Normal">
+                                                        <VisualState.Setters>
+                                                            <Setter Property="BackgroundColor" Value="#8A1313"/>
+                                                            <Setter Property="Scale" Value="1"/>
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+
+                                                    <VisualState x:Name="Pressed">
+                                                        <VisualState.Setters>
+                                                            <Setter Property="BackgroundColor" Value="#963B3B"/>
+                                                            <Setter Property="Scale" Value="0.92"/>
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateGroupList>
+                                        </VisualStateManager.VisualStateGroups>
+                                    </Button>
+                                </HorizontalStackLayout>
                             </VerticalStackLayout>
-                            <VerticalStackLayout HorizontalOptions="End">
-                                <Button Text="Eliminar" Clicked="Eliminar_Clicked" CommandParameter="{Binding Id}" />
-                            </VerticalStackLayout>
-                        </HorizontalStackLayout>
+                        </Grid>
                     </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
