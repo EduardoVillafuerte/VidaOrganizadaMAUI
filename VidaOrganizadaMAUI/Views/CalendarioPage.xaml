@@ -3,43 +3,80 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VidaOrganizadaMAUI.Views.CalendarioPage"
              Title="Calendario">
-    <VerticalStackLayout Padding="12" Spacing="10">
-        <Entry x:Name="entryEventoTitulo" Placeholder="Título del evento" />
-        <Entry x:Name="entryEventoDescripcion" Placeholder="Descripción (opcional)" />
-        <DatePicker x:Name="datePickerEvento" />
 
-        <Button Text="Agregar evento" Clicked="AgregarEvento_Clicked" />
+    <VerticalStackLayout Padding="12" Spacing="12">
 
-        <Label Text="Eventos" FontAttributes="Bold" />
+        <Entry x:Name="entryEventoTitulo"
+               Placeholder="Título del evento"
+               Margin="0,4"
+               TextColor="White"
+               PlaceholderColor="#FFEEEE"
+               HeightRequest="45" />
+
+        <Entry x:Name="entryEventoDescripcion"
+               Placeholder="Descripción (opcional)"
+               Margin="0,4"
+               TextColor="White"
+               PlaceholderColor="#FFEEEE"
+               HeightRequest="45" />
+
+        <DatePicker x:Name="datePickerEvento"
+                    Margin="0,4"
+                    TextColor="White"
+                    BackgroundColor="#550000" />
+
+        <Button Text="Agregar evento"
+                Clicked="AgregarEvento_Clicked"
+                Margin="0,8"
+                BackgroundColor="#880000"
+                TextColor="White"
+                CornerRadius="10"
+                HeightRequest="50"
+                FontAttributes="Bold" />
+
+        <Label Text="Eventos"
+               FontAttributes="Bold"
+               FontSize="20"
+               TextColor="White"
+               Margin="0,10,0,0" />
 
         <CollectionView x:Name="cvEventos" HeightRequest="400">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Border Stroke="#ddd"
-                StrokeThickness="1"
-                Padding="8"
-                Margin="4"
-                Background="White"
-                StrokeShape="RoundRectangle 8">
+                    <Border BackgroundColor="#330000"
+                            Stroke="#771111"
+                            StrokeThickness="1"
+                            Padding="12"
+                            Margin="4,8"
+                            StrokeShape="RoundRectangle 10">
 
-                        <HorizontalStackLayout>
-                            <VerticalStackLayout HorizontalOptions="FillAndExpand">
-                                <Label Text="{Binding Titulo}" FontAttributes="Bold" />
-                                <Label Text="{Binding FechaEvento, StringFormat='Fecha: {0:yyyy-MM-dd}'}" FontSize="12" />
-                                <Label Text="{Binding Descripcion}" FontSize="12" />
+                        <HorizontalStackLayout Spacing="10">
+
+                            <VerticalStackLayout WidthRequest="250">
+
+                                <Label Text="{Binding Titulo}"
+                                       FontAttributes="Bold"
+                                       TextColor="White"
+                                       FontSize="16" />
+
+                                <Label Text="{Binding FechaEvento, StringFormat='Fecha: {0:yyyy-MM-dd}'}"
+                                       FontSize="12"
+                                       TextColor="#FFECEC" />
+
+                                <Label Text="{Binding Descripcion}"
+                                       FontSize="12"
+                                       TextColor="#FFDDDD" />
+
                             </VerticalStackLayout>
 
-                            <Button Text="Eliminar"
-                        Clicked="EliminarEvento_Clicked"
-                        CommandParameter="{Binding Id}" />
                         </HorizontalStackLayout>
 
                     </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
-
         </CollectionView>
 
     </VerticalStackLayout>
 
 </ContentPage>
+
