@@ -3,25 +3,127 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VidaOrganizadaMAUI.Views.HabitosPage"
              Title="Hábitos">
-    <VerticalStackLayout Padding="12" Spacing="10">
-        <Entry x:Name="entryHabitoNombre" Placeholder="Nombre del hábito"/>
-        <Entry x:Name="entryHabitoFrecuencia" Placeholder="Frecuencia (Diario, Semanal)"/>
-        <Button Text="Agregar hábito" Clicked="AgregarHabito_Clicked" />
-        <Label Text="Hábitos" FontAttributes="Bold" />
-        <CollectionView x:Name="cvHabitos" HeightRequest="400">
+
+    <VerticalStackLayout Padding="12" Spacing="12">
+
+        <!-- CAMPOS -->
+        <Entry x:Name="entryHabitoNombre"
+               Placeholder="Nombre del hábito" />
+
+        <Entry x:Name="entryHabitoFrecuencia"
+               Placeholder="Frecuencia (Diario, Semanal)" />
+
+        <!-- BOTÓN AGREGAR -->
+        <Button Text="Agregar hábito"
+                Clicked="AgregarHabito_Clicked"
+                BackgroundColor="#8A1313"
+                TextColor="White"
+                CornerRadius="12"
+                Padding="14,6">
+
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="#8A1313"/>
+                                <Setter Property="Scale" Value="1"/>
+                            </VisualState.Setters>
+                        </VisualState>
+
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="#963B3B"/>
+                                <Setter Property="Scale" Value="0.95"/>
+                            </VisualState.Setters>
+                        </VisualState>
+
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </VisualStateManager.VisualStateGroups>
+        </Button>
+
+        <!-- TÍTULO -->
+        <Label Text="Hábitos"
+               FontAttributes="Bold"
+               FontSize="18" />
+
+        <!-- LISTA -->
+        <CollectionView x:Name="cvHabitos"
+                        HeightRequest="400">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame Padding="8" Margin="4">
-                        <HorizontalStackLayout>
-                            <VerticalStackLayout HorizontalOptions="FillAndExpand">
-                                <Label Text="{Binding Nombre}" FontAttributes="Bold"/>
-                                <Label Text="{Binding Frecuencia}" FontSize="12"/>
-                            </VerticalStackLayout>
-                            <Button Text="Eliminar" Clicked="EliminarHabito_Clicked" CommandParameter="{Binding Id}" />
-                        </HorizontalStackLayout>
+
+                    <!-- TARJETA -->
+                    <Frame Padding="10"
+                           Margin="4"
+                           BorderColor="#DDD"
+                           CornerRadius="10">
+
+                        <Grid ColumnDefinitions="6,*">
+
+                            <!-- FRANJA DE COLOR -->
+                            <BoxView Color="#8A1313"
+                                     Grid.RowSpan="3"/>
+
+                            <HorizontalStackLayout Grid.Column="1"
+                                                   Spacing="6"
+                                                   Padding="4,0">
+
+                                <VerticalStackLayout HorizontalOptions="FillAndExpand">
+                                    <Label Text="{Binding Nombre}"
+                                           FontAttributes="Bold"
+                                           FontSize="16" />
+
+                                    <Label Text="{Binding Frecuencia}"
+                                           FontSize="13"
+                                           TextColor="#444" />
+                                </VerticalStackLayout>
+
+                                <!-- BOTÓN ELIMINAR -->
+                                <Button Text="Eliminar"
+                                        Clicked="EliminarHabito_Clicked"
+                                        CommandParameter="{Binding Id}"
+                                        BackgroundColor="#8A1313"
+                                        TextColor="White"
+                                        CornerRadius="12"
+                                        Padding="12,4"
+                                        HorizontalOptions="End">
+
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroupList>
+                                            <VisualStateGroup x:Name="CommonStates">
+
+                                                <VisualState x:Name="Normal">
+                                                    <VisualState.Setters>
+                                                        <Setter Property="BackgroundColor" Value="#8A1313"/>
+                                                        <Setter Property="Scale" Value="1"/>
+                                                    </VisualState.Setters>
+                                                </VisualState>
+
+                                                <VisualState x:Name="Pressed">
+                                                    <VisualState.Setters>
+                                                        <Setter Property="BackgroundColor" Value="#963B3B"/>
+                                                        <Setter Property="Scale" Value="0.92"/>
+                                                    </VisualState.Setters>
+                                                </VisualState>
+
+                                            </VisualStateGroup>
+                                        </VisualStateGroupList>
+                                    </VisualStateManager.VisualStateGroups>
+
+                                </Button>
+
+                            </HorizontalStackLayout>
+
+                        </Grid>
+
                     </Frame>
+
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+
     </VerticalStackLayout>
 </ContentPage>

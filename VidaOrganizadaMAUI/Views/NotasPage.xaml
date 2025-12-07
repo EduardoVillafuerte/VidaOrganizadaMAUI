@@ -3,26 +3,142 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VidaOrganizadaMAUI.Views.NotasPage"
              Title="Notas">
-    <VerticalStackLayout Padding="12" Spacing="10">
-        <Entry x:Name="entryNotaTitulo" Placeholder="Título de la nota"/>
-        <Editor x:Name="editorContenido" HeightRequest="120" Placeholder="Escribe tu nota..."/>
-        <Button Text="Agregar nota" Clicked="AgregarNota_Clicked" />
-        <Label Text="Notas" FontAttributes="Bold"/>
-        <CollectionView x:Name="cvNotas" HeightRequest="400">
+
+    <VerticalStackLayout Padding="12" Spacing="12">
+
+        <!-- TÍTULO DE NOTA -->
+        <Entry x:Name="entryNotaTitulo"
+               Placeholder="Título de la nota"
+               />
+
+        <!-- CONTENIDO -->
+        <Editor x:Name="editorContenido"
+                HeightRequest="120"
+                Placeholder="Escribe tu nota..."
+                />
+
+        <!-- BOTÓN AGREGAR NOTA -->
+        <Button Text="Agregar nota"
+                Clicked="AgregarNota_Clicked"
+                BackgroundColor="#8A1313"
+                TextColor="White"
+                CornerRadius="12"
+                Padding="14,6">
+
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="#8A1313"/>
+                                <Setter Property="Scale" Value="1"/>
+                            </VisualState.Setters>
+                        </VisualState>
+
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="#963B3B"/>
+                                <Setter Property="Scale" Value="0.95"/>
+                            </VisualState.Setters>
+                        </VisualState>
+
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </VisualStateManager.VisualStateGroups>
+        </Button>
+
+        <!-- TÍTULO LISTA -->
+        <Label Text="Notas"
+               FontAttributes="Bold"
+               FontSize="18"
+               />
+
+        <!-- LISTA DE NOTAS -->
+        <CollectionView x:Name="cvNotas"
+                        HeightRequest="400">
+
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame Padding="8" Margin="4">
-                        <VerticalStackLayout>
-                            <Label Text="{Binding Titulo}" FontAttributes="Bold"/>
-                            <Label Text="{Binding Contenido}" LineBreakMode="TailTruncation" MaxLines="3"/>
-                            <HorizontalStackLayout>
-                                <Label Text="{Binding FechaCreacion, StringFormat='Creada: {0:yyyy-MM-dd}'}" FontSize="10" HorizontalOptions="Start"/>
-                                <Button Text="Eliminar" Clicked="EliminarNota_Clicked" CommandParameter="{Binding Id}" HorizontalOptions="EndAndExpand"/>
-                            </HorizontalStackLayout>
-                        </VerticalStackLayout>
+
+                    <!-- TARJETA NOTA -->
+                    <Frame Padding="10"
+                           Margin="4"
+                           BorderColor="#DDD"
+                           CornerRadius="10">
+
+                        <Grid ColumnDefinitions="6,*">
+
+                            <!-- FRANJA DE COLOR -->
+                            <BoxView Color="#8A1313"
+                                     Grid.RowSpan="3"/>
+
+                            <VerticalStackLayout Grid.Column="1"
+                                                 Spacing="4">
+
+                                <Label Text="{Binding Titulo}"
+                                       FontAttributes="Bold"
+                                       FontSize="16"/>
+
+                                <Label Text="{Binding Contenido}"
+                                       LineBreakMode="TailTruncation"
+                                       MaxLines="3"
+                                       FontSize="13"
+                                       TextColor="#444"/>
+
+                                <HorizontalStackLayout Margin="0,4,0,0">
+
+                                    <Label Text="{Binding FechaCreacion, StringFormat='Creada: {0:yyyy-MM-dd}'}"
+                                           FontSize="10"
+                                           TextColor="#777"
+                                           HorizontalOptions="Start"/>
+
+                                    <!-- BOTÓN ELIMINAR -->
+                                    <Button Text="Eliminar"
+                                            Clicked="EliminarNota_Clicked"
+                                            CommandParameter="{Binding Id}"
+                                            BackgroundColor="#8A1313"
+                                            TextColor="White"
+                                            CornerRadius="12"
+                                            Padding="12,4"
+                                            HorizontalOptions="EndAndExpand">
+
+                                        <VisualStateManager.VisualStateGroups>
+                                            <VisualStateGroupList>
+                                                <VisualStateGroup x:Name="CommonStates">
+
+                                                    <VisualState x:Name="Normal">
+                                                        <VisualState.Setters>
+                                                            <Setter Property="BackgroundColor" Value="#8A1313"/>
+                                                            <Setter Property="Scale" Value="1"/>
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+
+                                                    <VisualState x:Name="Pressed">
+                                                        <VisualState.Setters>
+                                                            <Setter Property="BackgroundColor" Value="#963B3B"/>
+                                                            <Setter Property="Scale" Value="0.92"/>
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+
+                                                </VisualStateGroup>
+                                            </VisualStateGroupList>
+                                        </VisualStateManager.VisualStateGroups>
+
+                                    </Button>
+
+                                </HorizontalStackLayout>
+
+                            </VerticalStackLayout>
+
+                        </Grid>
+
                     </Frame>
+
                 </DataTemplate>
             </CollectionView.ItemTemplate>
+
         </CollectionView>
+
     </VerticalStackLayout>
 </ContentPage>
